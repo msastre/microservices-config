@@ -1,0 +1,26 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+
+    leaseRenewalIntervalInSeconds: 5
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+---
+spring:
+  profiles: docker
+eureka:
+  server:
+    enableSelfPreservation: false 
+  instance:
+    hostname: discovery-service
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ 
